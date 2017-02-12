@@ -4,4 +4,4 @@
 out/*
 *.iws
 .gradle/*
-
+build/*

@@ -9,3 +9,15 @@ dependencies {
     compile 'com.google.guava:guava:21.0'
     testCompile ('junit:junit:4.12')
 }
+
+sourceCompatibility = 1.8
+version = '1.0'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Date Util',
+                    'Implementation-Version': version,
+                    'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                    'Main-Class': 'com.org.dateutil.DateUtilMain'
+    }
+}
