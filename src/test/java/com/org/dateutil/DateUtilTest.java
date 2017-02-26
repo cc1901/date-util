@@ -28,4 +28,11 @@ public class DateUtilTest {
 
         assertThat(formattedLastDateOfPreviousMonth, is("31/01/17"));
     }
+
+    @Test
+    public void shouldGetLastBusinessDayOfPreviousMonth() throws Exception {
+        String formattedLastDateOfPreviousMonth = DateUtil.getFormattedLastDateOfPreviousMonth("dd/MM/yy");
+
+        assertThat(formattedLastDateOfPreviousMonth, is("31/01/17"));
+    }
 }

@@ -10,7 +10,20 @@ public class DateUtil {
         calendar.add(Calendar.YEAR, 0);
         calendar.add(Calendar.MONTH, -1);
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
-        return LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DATE));
+        int date = calendar.get(Calendar.DATE);
+        date = offsetToBusinessDay(calendar, date);
+        return LocalDate.of(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, date);
+    }
+
+    private static int offsetToBusinessDay(Calendar calendar, int date) {
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        if (dayOfWeek == Calendar.SATURDAY) {
+            date = date - 1;
+        }
+        if (dayOfWeek == Calendar.SUNDAY) {
+            date = date - 2;
+        }
+        return date;
     }
 
     public static String getFormattedLastDateOfPreviousMonth(String format) {
